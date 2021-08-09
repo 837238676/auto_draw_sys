@@ -17,6 +17,7 @@
             <el-option label="蓄冷量出图" value="蓄冷量出图" />
             <el-option label="年平均总辐射量出图" value="年平均总辐射量出图" />
             <el-option label="DEM出图" value="DEM出图" />
+            <el-option label="谷歌卫星图" value="谷歌卫星图" />
           </el-select>
         </el-col>
       </el-form-item>
@@ -86,6 +87,7 @@
         v-if="
           form.task_kind !== '土壤属性出图' &&
           form.task_kind !== '年平均总辐射量出图' &&
+          form.task_kind !== '谷歌卫星图' &&
           form.task_kind !== 'DEM出图'
         "
         label="开始时间"
@@ -105,6 +107,7 @@
         v-if="
           form.task_kind !== '土壤属性出图' &&
           form.task_kind !== '年平均总辐射量出图' &&
+          form.task_kind !== '谷歌卫星图' &&
           form.task_kind !== 'DEM出图'
         "
         label="结束时间"
@@ -194,6 +197,11 @@ export default {
           if (this.form.task_kind === "DEM出图") {
             this.form.time_start = null;
             this.form.time_end = null;
+          }
+          if (this.form.task_kind === "谷歌卫星图") {
+            this.form.time_start = null;
+            this.form.time_end = null;
+            this.form.gsa = 1;
           }
           createTask(this.form).then((res) => {
             this.$message({ type: "success", message: "提交成功!" });
